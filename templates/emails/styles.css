@@ -1,0 +1,20 @@
+body, div, p {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.header {
+  border-bottom: 1px solid #ececec;
+  padding: 10px;
+}
+
+.btn {
+  padding: 10px;
+}

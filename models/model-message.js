@@ -10,6 +10,5 @@ const Message  = new mongoose.Schema({
   emailHash: String,
 })
 
-
 // EXPORTS =======================
 module.exports = mongoose.model('Message', Message);
