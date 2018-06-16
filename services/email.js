@@ -21,6 +21,7 @@ var templateDir = path.join(__dirname, 'templates', 'emails');
 const email = new Email({
   views: { root: templateDir }
 });
+
 email
   .renderAll('send-files', {
     name: 'Doruk',
@@ -38,6 +39,7 @@ function sendEmail({subject, html, text, to}) {
       text, // plaintext body
       html // html body
   };
+
   transporter.sendMail(mailOptions, function(error, info){
       if(error){
           return console.log(error);
