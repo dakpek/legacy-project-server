@@ -11,9 +11,11 @@ const convert      = require('koa-convert')
 
 const errorHandler = require('./middlewares/error-handler');
 
-const env         = process.env.NODE_ENV || 'development';
-// const db          = require('./models');
-// const router      = require('./routers');
+const env          = process.env.NODE_ENV || 'development';
+const db           = require('./db');
+const router       = require('./router');
+
+// Logic --------------------
 
 const app = new Koa();
 
@@ -22,6 +24,8 @@ app
   .use(bodyParser())
   .use(errorHandler)
   .use(compress())
+  .use(router.routes())
+  .use(router.allowedMethods())
   .listen(process.env.PORT, () => {
     console.log(`Koa listening on ${process.env.PORT}`)
   });
