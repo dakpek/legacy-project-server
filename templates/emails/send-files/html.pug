@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+    link(rel="stylesheet", href="../templates/emails/styles.css")
+    body
+      div.header
+        div.header-logo
+          img(class='logo' src='https://filenation.io/assets/logo.png')
+        div.header-text FileNation
+      div.wrapper
+        h1 Someone sent you a file!
+        p.message #{message}
+        |
+        div.download-button-container 
+          a(class='btn', href=downloadLink) Download files

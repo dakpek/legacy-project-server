@@ -1,22 +1,25 @@
 const db = require ('../db')
 const uuidv4 = require('uuid/v4')
-const mailer = require ('../services/email')
+const mailer = require ('../services/mailer')
 
 // SENDER
 const postHash = async (ctx, next) => {
   const emailHash =  uuidv4();
   const data = {
-  senderEmail: ctx.request.body.senderEmail,
-  receiverEmail: ctx.request.body.receiverEmail,
-  hashes: ctx.request.body.hashes,
-  dateExpire: ctx.request.body.dateExpire,
-  emailHash :emailHash
+    senderEmail: ctx.request.body.senderEmail,
+    receiverEmail: ctx.request.body.receiverEmail,
+    hashes: ctx.request.body.hashes,
+    dateExpire: ctx.request.body.dateExpire,
+    message: ctx.request.body.message,
+    emailHash: emailHash
   }
-  const response = await mailer.send('send-files', data);
+  const response = await mailer.send('send-files', {
+    downloadLink: process.env.FRONTEND_URL + '/download/' + emailHash,
+    ...data
+  });
   await db.postHash(data)
   ctx.body = {"emailHash": emailHash}
   next()
-
 }
 
 // RECEIVER

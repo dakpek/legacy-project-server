@@ -22,16 +22,17 @@ const email = new Email({
 });
 
 async function sendEmail(options) {
+  console.log('OPTIONS',options);
   const mailOptions = {
       from: `"${process.env.MAILER_NAME}" <${process.env.MAILER_FROM}>`,
-      to: options.email_receiver,
+      to: options.receiverEmail,
       subject: options.subject,
       text: options.text,
       html: options.html,
   };
   await transporter.sendMail(mailOptions, function(error, info){
       if(error){
-        return error;
+        throw new Error(error)
       }
       console.log(info);
   });
