@@ -5,7 +5,7 @@ const Message    = require('./models/model-message')
 
 const postHash = (message) => {
   Message.create(message)
-     .then(res => console.log("successfully added item"))
+    .then(res => console.log("successfully added item"))
     .catch(err => console.error(err))
 }
 

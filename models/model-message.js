@@ -11,6 +11,5 @@ const Message  = new mongoose.Schema({
   message: String
 })
 
-
 // EXPORTS =======================
 module.exports = mongoose.model('Message', Message);

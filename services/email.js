@@ -1,52 +1,57 @@
 'use strict';
-require('dotenv').config();
+
 const path = require('path');
 const Email = require('email-templates');
 const nodemailer = require('nodemailer');
 
-var smtpConfig = {
-    host: process.env.MAILER_HOST,
-    port: process.env.MAILER_PORT,
-    secure: process.env.MAILER_PORT === 465 ? true : false, // use SSL
-    auth: {
-        user: process.env.MAILER_USERNAME,
-        pass: process.env.MAILER_PASSWORD
-    }
+const smtpConfig = {
+  host: process.env.MAILER_HOST,
+  port: process.env.MAILER_PORT,
+  secure: process.env.MAILER_PORT === 465 ? true : false, // use SSL
+  auth: {
+    user: process.env.MAILER_USERNAME,
+    pass: process.env.MAILER_PASSWORD
+  }
 };
 
 // create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport(smtpConfig);
-var templateDir = path.join(__dirname, 'templates', 'emails');
+const transporter = nodemailer.createTransport(smtpConfig);
 
 const email = new Email({
-  views: { root: templateDir }
+  views: { root: path.join(__dirname, '../templates', 'emails') }
 });
 
-email
-  .renderAll('send-files', {
-    name: 'Doruk',
-    nameSender: 'Marlon',
-    to: 'test@test.com'
-  })
-  .then(sendEmail)
-  .catch(console.error);
-
-function sendEmail({subject, html, text, to}) {
-  var mailOptions = {
-      from: `"${process.env.MAILER_NAME}" <${process.env.MAILER_FROM}>`, // sender address
-      to, // list of receivers
-      subject, // Subject line
-      text, // plaintext body
-      html // html body
+async function sendEmail(options) {
+  const mailOptions = {
+      from: `"${process.env.MAILER_NAME}" <${process.env.MAILER_FROM}>`,
+      to: options.email_receiver,
+      subject: options.subject,
+      text: options.text,
+      html: options.html,
   };
-
-  transporter.sendMail(mailOptions, function(error, info){
+  await transporter.sendMail(mailOptions, function(error, info){
       if(error){
-          return console.log(error);
+        return error;
       }
-      console.log('Message sent: ' + info.response);
+      console.log(info);
   });
 }
 
+const send = (type, options) => {
+  return new Promise(function (resolve, reject) {
+    email
+      .renderAll(type, options)
+      .then((response) => {
+        resolve(sendEmail({...options, ...response}))
+      })
+      .catch((e) => {
+        console.log('error rendering');
+        reject(e);
+      });
+    }
+  );
+}
 
-module.exports = transporter;
+module.exports = {
+  send
+};
