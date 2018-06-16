@@ -6,12 +6,12 @@ const mailer = require ('../services/mailer')
 const postHash = async (ctx, next) => {
   const emailHash =  uuidv4();
   const data = {
-    senderEmail: ctx.request.body.senderEmail,
-    receiverEmail: ctx.request.body.receiverEmail,
-    hashes: ctx.request.body.hashes,
-    dateExpire: ctx.request.body.dateExpire,
-    message: ctx.request.body.message,
-    emailHash: emailHash
+  senderEmail: ctx.request.body.senderEmail,
+  receiverEmail: ctx.request.body.receiverEmail,
+  hashes: ctx.request.body.hashes,
+  dateExpire: ctx.request.body.dateExpire,
+  emailHash :emailHash
+  message: ctx.request.body.message,
   }
   const response = await mailer.send('send-files', {
     downloadLink: process.env.FRONTEND_URL + '/download/' + emailHash,
