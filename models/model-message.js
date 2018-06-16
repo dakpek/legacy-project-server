@@ -6,6 +6,5 @@ const Message  = new mongoose.Schema({
   dateExpire: Date,
 })
 
-
 // EXPORTS =======================
 module.exports = mongoose.model('Message', Message);
