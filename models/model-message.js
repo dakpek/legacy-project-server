@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
+require('mongoose-type-email');
+
 
 const Message  = new mongoose.Schema({
-  senderEmail: String,
-  receiverEmail: String,
+  senderEmail: mongoose.SchemaTypes.Email,
+  receiverEmail: mongoose.SchemaTypes.Email,
   hashes: Array,
   dateExpire: Date,
   emailHash: String,

@@ -21,6 +21,7 @@
   "dependencies": {
     "chai": "^4.1.2",
     "dotenv": "^6.0.0",
+    "email-templates": "^4.0.1",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-compress": "^3.0.0",

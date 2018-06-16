@@ -1,11 +1,12 @@
 const db = require ('../db')
-const uuid = require('uuid/v4')
+const uuidv4 = require('uuid/v4')
 
 // SENDER
 
 const postHash = async (ctx, next) => {
 
   const emailHash =  uuidv4();
+
 
   const data = {
   senderEmail: ctx.request.body.senderEmail,
@@ -16,7 +17,9 @@ const postHash = async (ctx, next) => {
   }
 
   await db.postHash(data)
+  ctx.body = {"emailHash": emailHash}
   next()
+
 }
 
 // RECEIVER
