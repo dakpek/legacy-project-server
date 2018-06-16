@@ -14,6 +14,7 @@ const postHash = async (ctx, next) => {
   hashes: ctx.request.body.hashes,
   dateExpire: ctx.request.body.dateExpire,
   emailHash :emailHash
+  message: ctx.request.body.message,
   }
 
   await db.postHash(data)

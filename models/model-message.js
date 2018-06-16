@@ -8,6 +8,7 @@ const Message  = new mongoose.Schema({
   hashes: Array,
   dateExpire: Date,
   emailHash: String,
+  message: String
 })
 
 
