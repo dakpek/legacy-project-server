@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 
 const Message  = new mongoose.Schema({
-  email: String,
-  hash: String,
+  senderEmail: String,
+  receiverEmail: String,
+  hashes: Array,
   dateExpire: Date,
+  emailHash: String,
 })
 
 

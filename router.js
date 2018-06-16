@@ -13,7 +13,7 @@ router
   .post('/hash', controller.postHash)
 
 // RECEIVER
-  .get('/hash/:hash', controller.getHash)
+  .get('/hash/:emailHash', controller.getHash)
 
 
 

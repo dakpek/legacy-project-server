@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/dakpek/legacy-project-server#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "dotenv": "^6.0.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
@@ -29,6 +30,7 @@
     "mocha": "^5.2.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.1.5",
+    "mongoose-type-email": "^1.0.9",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
