@@ -11,6 +11,7 @@ router
 
 // SENDER
   .post('/hash', controller.postHash)
+  .post('/test', controller.test)
 
 // RECEIVER
   .get('/hash/:emailHash', controller.getHash)

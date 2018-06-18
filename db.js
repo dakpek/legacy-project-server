@@ -11,12 +11,6 @@ const postHash = (message) => {
 
 // RECEIVER ENDPOINTS ==============
 
-function DateError() {
-  throw new DateError('This message has expired')
-}
-
-DateError.prototype = new Error();
-
 const getHash = async (emailHash) => {
      let data = await Message.findOne({"emailHash": emailHash})
      let dateNow = new Date()

@@ -4,7 +4,7 @@
   "description": "Koa server (JS) for FileNation -- legacy project, Codeworks",
   "main": "app.js",
   "scripts": {
-    "test": "node tests/test.controllers.js",
+    "test": "mocha tests/test.controllers.js",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
