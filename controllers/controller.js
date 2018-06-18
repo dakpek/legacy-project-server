@@ -6,11 +6,22 @@ const mailer = require ('../services/email')
 const postHash = async (ctx, next) => {
   const emailHash =  uuidv4();
   let hashes = []
+  let filetypes = []
+  let files = {}
   ctx.request.body.hashes.forEach((el) => hashes.push(el.hash))
+  ctx.request.body.names.forEach((el) => {
+    let type = el.substr(el.lastIndexOf('.'))
+    filetypes.push(type)
+  })
+  for (let i = 0; i < hashes.length; i++) {
+    files[hashes[i]] = filetypes[i]
+  }
   const data = {
   senderEmail: ctx.request.body.senderEmail,
   receiverEmail: ctx.request.body.receiverEmail,
-  hashes: ctx.request.body.hashes,
+  files: files,
+  filetypes: filetypes,
+  hashes: hashes,
   dateExpire: ctx.request.body.dateExpire,
   emailHash :emailHash,
   message: ctx.request.body.message,
