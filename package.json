@@ -1,0 +1,55 @@
+{
+  "name": "legacy-project-server",
+  "version": "1.0.0",
+  "description": "Koa server (JS) for FileNation -- legacy project, Codeworks",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha tests/test.controllers.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dakpek/legacy-project-server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dakpek/legacy-project-server/issues"
+  },
+  "homepage": "https://github.com/dakpek/legacy-project-server#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "dotenv": "^6.0.0",
+    "email-templates": "^4.0.1",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compress": "^3.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-cors": "0.0.16",
+    "koa-router": "^7.4.0",
+    "mocha": "^5.2.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.1.5",
+    "mongoose-type-email": "^1.0.9",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "commitizen": "^2.10.1",
+    "cz-changelog": "^1.0.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "nodemon": "^1.17.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
