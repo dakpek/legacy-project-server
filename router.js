@@ -5,17 +5,8 @@ const controller = require('./controllers/controller')
 
 const router = new Router();
 
-// ROUTER
-
 router
+  .post('/hash', controller.postHash) // SENDER
+  .get('/hash/:emailHash', controller.getHash) // RECEIVER
 
-// SENDER
-  .post('/hash', controller.postHash)
-
-// RECEIVER
-  .get('/hash/:emailHash', controller.getHash)
-
-
-
-// EXPORTS =======================
 module.exports = router
