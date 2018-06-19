@@ -1,7 +1,7 @@
 const db = require ('../db');
 const uuidv4 = require('uuid/v4');
-const mailer = require ('../services/email');
 const { DateError } =  require('../errors');
+const mailer = require ('../services/mailer');
 
 // SENDER
 const postHash = async (ctx, next) => {
@@ -24,10 +24,14 @@ const postHash = async (ctx, next) => {
     message: ctx.request.body.message,
   }
 
-  const response = await mailer.send('send-files', data);
-  await db.postHash(data);
+  const response = await mailer.send('send-files', {
+    downloadLink: process.env.FRONTEND_URL + '/download/' + emailHash,
+    ...data
+  });
+  
+  await db.postHash(data)
   ctx.body = {"emailHash": emailHash}
-  next();
+  next()
 }
 
 // RECEIVER
