@@ -3,7 +3,6 @@ const errorHandler = async (ctx, next) => {
     await next();
   } catch (err) {
     //eslint-disable-next-line
-    console.error(err);
     ctx.body = undefined;
     ctx.status = ctx.status >= 400 &&  ctx.status || 400;
     if (err.message) {
