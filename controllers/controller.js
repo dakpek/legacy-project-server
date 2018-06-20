@@ -15,11 +15,15 @@ const postHash = async (ctx, next) => {
     files.push({hash: el.hash, filetype});
   })
 
+  console.log(ctx.request.body)
+
+
+
   const data = {
     senderEmail: ctx.request.body.senderEmail,
     receiverEmail: ctx.request.body.receiverEmail,
     files: files,
-    dateExpire: ctx.request.body.dateExpire,
+    dateExpire: ctx.request.body.dateExpiry,
     emailHash :emailHash,
     message: ctx.request.body.message,
   }
