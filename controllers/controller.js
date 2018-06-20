@@ -5,20 +5,16 @@ const mailer = require ('../services/mailer');
 
 // SENDER
 const postHash = async (ctx, next) => {
+  console.log('POST HASH');
   const emailHash =  uuidv4();
   let hashes = [];
   let filetypes = [];
   let files = [];
 
-  ctx.request.body.hashes.forEach((el, key) => {
-    const filetype = ctx.request.body.names[key].substr(ctx.request.body.names[key].lastIndexOf('.')+1);
-    files.push({hash: el.hash, filetype});
-  })
-
   const data = {
     senderEmail: ctx.request.body.senderEmail,
     receiverEmail: ctx.request.body.receiverEmail,
-    files: files,
+    files: ctx.request.body.files,
     dateExpire: ctx.request.body.dateExpire,
     emailHash :emailHash,
     message: ctx.request.body.message,
@@ -28,7 +24,7 @@ const postHash = async (ctx, next) => {
     downloadLink: process.env.FRONTEND_URL + '/download/' + emailHash,
     ...data
   });
-  
+
   await db.postHash(data)
   ctx.body = {"emailHash": emailHash}
   next()

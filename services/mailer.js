@@ -23,6 +23,7 @@ const email = new Email({
 
 async function sendEmail(options) {
   console.log('OPTIONS',options);
+  console.log('MAILER FROM', process.env.MAILER_FROM);
   const mailOptions = {
       from: `"${process.env.MAILER_NAME}" <${process.env.MAILER_FROM}>`,
       to: options.receiverEmail,
