@@ -11,11 +11,8 @@ const convert      = require('koa-convert')
 
 const errorHandler = require('./middlewares/error-handler');
 
-const env          = process.env.NODE_ENV || 'development';
 const db           = require('./db');
 const router       = require('./router');
-
-// Logic --------------------
 
 const app = new Koa();
 
